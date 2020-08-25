@@ -1,0 +1,71 @@
+﻿@model FilmViewModel
+
+<h1>@Model.Title</h1>
+
+<form asp-controller="Movies" asp-action="Save" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Film</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Ime" class="control-label col-md-2"></label> <br />
+            <div class="col-md-10">
+                <input asp-for="Ime" class="form-control" /> <br />
+                <span asp-validation-for="Ime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ZanrId" class="control-label col-md-2"></label> <br />
+            <div class="col-md-10">
+                <select class="form-control" asp-for="ZanrId" asp-items="@(new SelectList(Model.Zanrovi, "Id", "Ime"))">
+                    <option>Please select one</option>
+                    <span asp-validation-for="ZanrId" class="text-danger"></span>
+                </select>  <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DatumObjave" class="control-label col-md-2"></label> <br />
+            <div class="col-md-10">
+                <input asp-for="DatumObjave" class="form-control" /> <br />
+                <span asp-validation-for="DatumObjave" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BrojNaStanju" class="control-label col-md-2"></label> <br />
+            <div class="col-md-10">
+                <input asp-for="BrojNaStanju" class="form-control" /> <br />
+                <span asp-validation-for="BrojNaStanju" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProdavnicaId" class="control-label col-md-2"></label> <br />
+            <div class="col-md-10">
+                <select class="form-control" asp-for="ProdavnicaId" asp-items="@(new SelectList(Model.Prodavnice, "Id", "Ime"))">
+                    <option>Please select one</option>
+                    <span asp-validation-for="ProdavnicaId" class="text-danger"></span>
+                </select>  <br />
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Movies" asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

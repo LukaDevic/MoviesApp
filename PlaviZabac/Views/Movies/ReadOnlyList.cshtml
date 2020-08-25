@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Film>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Filmovi</h1>
+
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Ime</th>
+        <th>Zanr</th>
+        <th>Datum Objave</th>
+        <th>Kolicina na stanju</th>
+        <th>Prodavnica</th>
+    </tr>
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>@movie.Ime</td>
+            <td>@movie.Zanr.Ime</td>
+            <td>@movie.DatumObjave.ToShortDateString()</td>
+            <td>@movie.BrojNaStanju</td>
+            <td>@movie.Prodavnica.Ime</td>
+        </tr>
+    }
+</table>

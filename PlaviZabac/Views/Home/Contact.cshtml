@@ -1,0 +1,54 @@
+﻿@model Kontakt
+
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kontakt</h1>
+
+<br />
+
+<h3>Broj za porucivanje: 011 123 4567</h3>
+
+<br />
+<br />
+<br />
+
+<h4>Posaljite nam vas komentar, zelimo da cujemo vase utiske</h4>
+
+<form asp-controller="Home" asp-action="EmailSent" method="post">
+
+    <div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2"></label> <br />
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" /> <br />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Komentar" class="col-md-2"></label> <br />
+            <div class="col-md-10">
+                <textarea asp-for="Komentar" class="form-control"></textarea> <br />
+                <span asp-validation-for="Komentar" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Posalji" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
